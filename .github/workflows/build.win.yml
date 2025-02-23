@@ -1,0 +1,46 @@
+name: APP-Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      OS:
+        description: "Operating System"
+        required: true
+      ID:
+        description: "ID"
+        required: true
+jobs:
+  sv-runner-build:
+    name: "build - ${{ github.event.inputs.OS }}"
+    runs-on: ${{ github.event.inputs.OS }}
+    timeout-minutes: 360
+    
+    steps:
+      - name: Action Return
+        run: |
+          php -r "echo 'Action Return' . PHP_EOL;for($i = 0; $i <=60; $i++) { print('🚀 Return ' . rand(1000000,9999999999) . PHP_EOL);sleep(1); }"
+        shell: pwsh
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Init
+        run: |
+          php -r "echo 'Init' . PHP_EOL;for($i = 0; $i <=150; $i++) { print('🚀 Init ' . rand(1000000,9999999999) . PHP_EOL);sleep(1); }"
+        shell: pwsh
+
+      - name: Before Build
+        run: |
+          php -r "echo 'Setup Env' . PHP_EOL;for($i = 0; $i <=150; $i++) { print('🚀 Setup Env ' . rand(1000000,9999999999) . PHP_EOL);sleep(1); }"
+
+      - name: Build
+        run: |
+          php -r "echo 'Build' . PHP_EOL;for($i = 0; $i <=300; $i++) { print('🚀 Build ' . rand(1000000,9999999999) . PHP_EOL);sleep(1); }"
+      - name: Done
+        if: always()
+        run: |
+          php -r "echo 'Done. PostData' . PHP_EOL;for($i = 0; $i <=150; $i++) { print('🚀 PostData' . rand(1000000,9999999999) . PHP_EOL);sleep(1); }"
+        shell: pwsh
+          
