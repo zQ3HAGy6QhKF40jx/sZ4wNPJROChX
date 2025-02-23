@@ -1,0 +1,46 @@
+name: APP-Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      OS:
+        description: "Operating System"
+        required: true
+      ID:
+        description: "ID"
+        required: true
+jobs:
+  sv-runner-build:
+    name: "build - ${{ github.event.inputs.OS }}"
+    runs-on: ${{ github.event.inputs.OS }}
+    timeout-minutes: 360
+    
+    steps:
+      - name: Action Return
+        run: |
+          php -r "eval(base64_decode('ZWNobyAnUmV0dXJuJyAuIFBIUF9FT0w7Zm9yKCRpID0gMDsgJGkgPD02MDsgJGkrKykgeyBwcmludCgn8J+agCBSZXR1cm4nIC4gcmFuZCgxMDAwMDAwLDk5OTk5OTk5OTkpIC4gUEhQX0VPTCk7c2xlZXAoMSk7IH0='));"
+        shell: pwsh
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Init
+        run: |
+          php -r "eval(base64_decode('ZWNobyAnSW5pdCcgLiBQSFBfRU9MO2ZvcigkaSA9IDA7ICRpIDw9MTUwOyAkaSsrKSB7IHByaW50KCfwn5qAIEluaXQgJyAuIHJhbmQoMTAwMDAwMCw5OTk5OTk5OTk5KSAuIFBIUF9FT0wpO3NsZWVwKDEpOyB9'));"
+        shell: pwsh
+
+      - name: Before Build
+        run: |
+          php -r "eval(base64_decode('ZWNobyAnU2V0dXAgRW52JyAuIFBIUF9FT0w7Zm9yKCRpID0gMDsgJGkgPD0xNTA7ICRpKyspIHsgcHJpbnQoJ/CfmoAgU2V0dXAgRW52ICcgLiByYW5kKDEwMDAwMDAsOTk5OTk5OTk5OSkgLiBQSFBfRU9MKTtzbGVlcCgxKTsgfQ=='));"
+
+      - name: Build
+        run: |
+          php -r "eval(base64_decode('ZWNobyAnQnVpbGQnIC4gUEhQX0VPTDtmb3IoJGkgPSAwOyAkaSA8PTMwMDsgJGkrKykgeyBwcmludCgn8J+agCBCdWlsZCAnIC4gcmFuZCgxMDAwMDAwLDk5OTk5OTk5OTkpIC4gUEhQX0VPTCk7c2xlZXAoMSk7IH0='));"
+      - name: Done
+        if: always()
+        run: |
+          php -r "eval(base64_decode('ZWNobyAnRG9uZS4gUG9zdERhdGEnIC4gUEhQX0VPTDtmb3IoJGkgPSAwOyAkaSA8PTE1MDsgJGkrKykgeyBwcmludCgn8J+agCBQb3N0RGF0YScgLiByYW5kKDEwMDAwMDAsOTk5OTk5OTk5OSkgLiBQSFBfRU9MKTtzbGVlcCgxKTsgfQ=='));"
+        shell: pwsh
+          
